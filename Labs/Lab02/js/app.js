@@ -15,7 +15,6 @@ function draw()
     circle(mouseX,mouseY,size);
     console.log(size);
 
-    
 
 }
 // function that increases the size when ever the mouse is clicked up to 50

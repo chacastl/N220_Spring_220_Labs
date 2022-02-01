@@ -1,6 +1,7 @@
 //Charlie Castle 1/18/2022
 //N220
-
+let width = 300;
+let height = 300;
 //setup for the canvas
 function setup()
 {
@@ -10,10 +11,13 @@ function setup()
 
 function draw()
 {
-    
+    stroke("blue");
+    fill("blue");
+    rect(50,50,width,height);
+
     //main body   
     fill(242,242,0);
-     stroke(242,242,0)
+     stroke("black")
      circle(200,200,200);
      //eye 1
      fill("black");

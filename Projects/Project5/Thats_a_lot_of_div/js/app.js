@@ -4,17 +4,30 @@
 
 //testing and making dvTest object
 let dvTest = document.getElementById("dvTest");
-let x = 20;
-let y = 20;
+let x = 100;
+let y = 100;
+let clickCount = 0;
 console.log(dvTest);
 
-for(let i = 0;i<100;i++)
+
+//for the onclick it grabs the function click add and the runs it
+
+dvTest.style.width = x + "px";
+dvTest.style.height = y + "px";
+document.getElementById("dvTest").onclick = function(){clickadd()};
+// click add multiplys x and y and then sets them to the height and width
+function clickadd()
 {
-    //making the Square
-    dvTest.style.width = x + "px";
-    dvTest.style.height = y + "px"; 
-    dvTest.style.backgroundColor = "#00FF00";
-    dvTest.style.float = "left";
+    if(clickCount >= 1)
+    {
+        document.getElementById('dvTest').innerHTML += " div";
+    }
+    else
+    {
+        document.getElementById('dvTest').innerHTML += "mc ";
+    }
+    clickCount++;
+
 }
 
 

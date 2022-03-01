@@ -28,6 +28,7 @@ dv1.onmousedown = function()
     dv6.style.background = "white";
 };
 
+//if the dv is clicked it changes everything to white except the on getting clicked and sets the innerHTML of the first to the one being clicked
 dv2.onmousedown = function()
 {
     maindv.innerHTML = dv2.innerHTML;

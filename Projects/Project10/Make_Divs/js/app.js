@@ -13,8 +13,11 @@ function Submit()
     for(var i = 0;i<objects.length;i++)
     {
        divArray[i] =  document.createElement("div"+ i);
-       divArray[i].setAttribute("div" + i, objects[1]);
-       divArray[i].innerHTML = "test";
+       
+       divArray[i].style.color = objects[i].color;
+       divArray[i].style.height = objects[i].height;
+       divArray[i].style.width = objects[i].width;
+       divArray[i].innerHTML = " test ";
         document.body.appendChild(divArray[i]);
     }
 }

@@ -8,32 +8,26 @@ var grid = [
 
 ];
 
-var stringArray = new Array(3);
-for(var i = 0;stringArray.length;i++)
-{
-    stringArray[i] = new Array(3);
-}
 
-function Submit()
-{
-    for(var i =0;grid[i].length;i++)
+
+    for(var i =0;grid.length;i++)
     {
-        for(var x = 0;grid[i][x].length;x++)
+        for(var x = 0;grid[0].length;x++)
         {
             if(grid[i][x] == 0)
             {
-                stringArray[i][x] = " ";
+                grid[i][x] = " ";
+                console.log(grid[i][x]);
             }
             if(grid[i][x] == 1)
             {
-                stringArray[i][x] = "X";
+                grid[i][x] = "X";
+                console.log(grid[i][x]);
             }
             if(grid[i][x] == 2)
             {
-                stringArray[i][x] = "O";
+                grid[i][x] = "O";
+                console.log(grid[i][x]);
             }
         }
     }
-
-    
-}

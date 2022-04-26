@@ -2,26 +2,31 @@
 //N220 Spring 2022
 //4/18/2022
 
+
+//This game is a clicker game that builds a little area as the games goes by the end of the game is when the sun consumes the entire map.
+
+//Base values and upgrade values
 let earth = 0;
-let tree = 5;
-let water = 5;
-let house = 5;
+let tree = 0;
+let water = 0;
+let house = 0;
 let sun = 0;
 let earthUpgrades =0;
 let treeUpgrades=0;
 let waterUpgrades=0;
 let houseUpgrades=0;
 let sunUpgrades=0;
-let x;
+
 let y;
 var newText;
 
+//button variables
 let earthAutoButton;
 let treeAutoButton;
 let waterAutoButton;
 let houseAutoButton;
 let SunAutoButton;
-
+let move = 0;
 let treeBuyButton;
 let waterBuyButton;
 let houseBuyButton;
@@ -55,6 +60,7 @@ function setup()
 
 function draw()
 {
+    //creates the text for the values given round becuase they are incrementing by decimals and it would look really messy
     background('white');
     fill('black');
     text('earth: ' + Math.round(earth), 5,10);
@@ -63,30 +69,53 @@ function draw()
     text('house: ' + Math.round(house), 170,10);
     text('sun: ' + Math.round(sun), 230,10);
     makeEarth(earth);
+    
+    //if statments for each value that will make the value on the canvas and show it on the canvas
+    if(sun >= 1)
+    {
+        //incrementer for the sun and will move it till 500 and then repeate
+        move = move + 1
+        if(move == 500)
+        {
+            move = 0;
+        }
+        makeSun(move,earth);
+    }
+    //making the tree if there is at least one 
     if(tree >= 1)
     {
         makeTree(earth);
     }
+    //making the water if there is at least one make water grabs earth and water to have it move with the canvas
     if(water >= 1)
     {
         makeWater(earth,water);
     }
+
+    //making the house if there is at least one and moves it with the earth
     if(house >= 1)
     {
         makeHouse(earth);
     }
+    
+
+    //all of the buttons for increment upgrades and buying single units
     earthAutoButton.mousePressed(earthUpgrade);
     treeAutoButton.mousePressed(treeUpgrade);
     waterAutoButton.mousePressed(waterUpgrade);
     houseAutoButton.mousePressed(houseUpgrade);
+    sunAutoButton.mousePressed(sunUpgrade);
     treeBuyButton.mousePressed(treeBuy);
     waterBuyButton.mousePressed(waterBuy);
     houseBuyButton.mousePressed(houseBuy);
     sunBuyButton.mousePressed(sunBuy);
     upgrades();
+
+    
     
 }
 
+//function treeBuy is to buy a tree with 50 earth will remove 50 earth and add one tree and log it in the console
 function treeBuy()
 {
     if(earth >= 50)
@@ -98,6 +127,7 @@ function treeBuy()
 
 }
 
+//function waterBuy is bought with 5 trees and removes 5 trees and adds one water and logs it into the console
 function waterBuy()
 {
     if(tree >= 5)
@@ -108,6 +138,7 @@ function waterBuy()
     }
 }
 
+//function houseBuy is bought with 5 trees and removes 5 water and adds one house
 function houseBuy()
 {
     if(water >= 5)
@@ -118,6 +149,7 @@ function houseBuy()
     }
 }
 
+//function sunBuy is bought with 5 house and removes 5 house and adds one sun
 function sunBuy()
 {
     if(house >= 5)
@@ -128,7 +160,7 @@ function sunBuy()
     }
 }
 
-
+//function earthUpgrade is bought with 50 earth and will be able to add the earthUpgrade by .01 and will continue 
 function earthUpgrade()
 {
     if(earth >= 50)
@@ -139,6 +171,7 @@ function earthUpgrade()
     }
 }
 
+//function treeUpgrade is bought with 5 trees and will increment the tree by .001 
 function treeUpgrade()
 {
     if(tree >= 5)
@@ -149,6 +182,7 @@ function treeUpgrade()
     }
 }
 
+//function waterUpgrade is bought with 5 water and will increment the water by .0001
 function waterUpgrade()
 {
     if(water >= 5)
@@ -159,6 +193,7 @@ function waterUpgrade()
     }
 }
 
+//function houseUpgrade is bougth with 5 house and will increment the house by .00001
 function houseUpgrade()
 {
     if(house >= 5)
@@ -168,22 +203,26 @@ function houseUpgrade()
         console.log("RAN UPGRADE");
     }
 }
-
+//function sunUpgrade is bought with 5 sun and will increment the sun by .000001
 function sunUpgrade()
 {
     if(sun >= 5)
     {
-        house -= 5;
-        houseUpgrades += .000001;
+        sun -= 5;
+        sunUpgrades += .000001;
         console.log("RAN UPGRADE");
     }
 }
 
+
+//when ever the mouse is clicked it will add one earth
 function mouseClicked()
 {
     earth ++;
 }
 
+
+//function make earth makes the ground of the game and is a rectanlge that goes up with earths value
 function makeEarth(y)
 {
     
@@ -192,6 +231,7 @@ function makeEarth(y)
     rect(0,800 - y,600,800);
 }
 
+//function makeTree makes 5 trees and goes up with the earths value
 function makeTree(y)
 {
     fill(37,21,11);
@@ -207,6 +247,7 @@ function makeTree(y)
     
 }
 
+//function makeWater goes up with the earths value and grows down with water value
 function makeWater(y,w)
 {
 
@@ -215,6 +256,7 @@ function makeWater(y,w)
 
 }
 
+//function make house makes a house and moves the entire building with the earth value so it does not fly away
 function makeHouse(y)
 {
     fill(202,164,114);
@@ -224,11 +266,19 @@ function makeHouse(y)
     rect(410,760-y,30,45);
 }
 
-function makeSun(y)
+//function makeSun will create the sun with x that is a incrementer in draw and earths value so that it will move left to right and repeat and follow earths level
+function makeSun(x,y)
 {
-    fill(249,215,28);
+    fill(253, 184, 19);
+    
+    console.log(x);
+    ellipse(x,400-y,sun*50,sun*50);
+
+    
 }
 
+
+//function upgrades goes through if statments and adds the upgrade value to the main value to make it sort of like a clicker game
 function upgrades()
 {
     if(earthUpgrades >= .01)
